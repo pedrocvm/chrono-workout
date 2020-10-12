@@ -3,6 +3,10 @@
   @include flexbox(true, true);
 }
 
+.circleContainer{
+  margin-top: -20px;
+}
+
 .appContainer {
   @include flexbox(true, true);
   justify-content: flex-start;
