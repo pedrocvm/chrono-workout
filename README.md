@@ -12,7 +12,4 @@ Inicialmente a Fase será Preparação, que corresponde ao Período de Aquecimen
 Ao iniciar o Contador, automaticamente a Fase passará para Execução, e ao acabar a contagem, a Fase passará para Descanso.
 
 ![](https://i.ibb.co/ynSx9kr/image.png)
-![](https://i.ibb.co/Jmcj4SR/image.png)
-![](https://i.ibb.co/S0SVYZ8/image.png)
-
 
