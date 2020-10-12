@@ -112,7 +112,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     });
   }
 
-  reset(){
+  reset() {
     this.phase = 0;
     this.timer = undefined;
     this.isPaused = false;
@@ -123,10 +123,19 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.timeleft = this.exercises[this.currentEx].duration;
   }
 
-  formatNumber(n:number){
-    
-    return n.toString().substring(0, 4);
-    
+  formatNumber(n: number) {
+    let seg =
+      n < 10 ? n.toString().substring(0, 2) : n.toString().substring(0, 3);
+    let miliseg =
+      n < 10
+        ? n.toString().substring(2, 4) || '00'
+        : n.toString().substring(3, 5) || '00';
+    const time = `${seg}:${miliseg}`;
+    if (+seg < 10) {
+      seg = '0' + seg;
+    }
+
+    return time.replace('.', '');
   }
 
   ngOnDestroy() {

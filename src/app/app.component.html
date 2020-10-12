@@ -8,6 +8,6 @@
     </button>
   </div>
 
-  <app-config *ngIf="config" [exercises]="exercises"></app-config>
-  <app-timer *ngIf="!config" [exercises]="exercises"></app-timer>
+  <app-config *ngIf="!config" [exercises]="exercises"></app-config>
+  <app-timer *ngIf="config" [exercises]="exercises"></app-timer>
 </div>

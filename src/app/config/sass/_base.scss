@@ -124,7 +124,8 @@ input {
 
 @media (max-width: 600px) {
   .formContainer {
-    @include flexbox(true, true);
+    width: 100%;
+    @include flexbox(false, true);
     margin: 0;
     padding: 0;
 
@@ -133,4 +134,5 @@ input {
       padding: 0;
     }
   }
+
 }
