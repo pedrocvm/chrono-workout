@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+span, p, a, h1, h2, h3, h4, h5, h6, label {
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  background-color: #273238;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
+
+}

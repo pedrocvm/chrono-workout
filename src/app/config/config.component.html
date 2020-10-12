@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="formContainer row">
+    <div class="input-field col l6 m6 s12">
+      <input
+        id="exercise"
+        type="text"
+        class="validate"
+        [(ngModel)]="exercise.name"
+      />
+      <label for="exercise" [class]="isEditing ? 'active' : ''"
+        >Exercício</label
+      >
+    </div>
+
+    <div class="input-field col l6 m6 s12">
+      <input
+        id="duration"
+        #duration
+        type="text"
+        class="validate"
+        [(ngModel)]="exercise.duration"
+      />
+      <label for="duration" [class]="isEditing ? 'active' : ''"
+        >Duração do Exercício</label
+      >
+    </div>
+
+    <div class="input-field col l6 m6 s12">
+      <input
+        id="sets"
+        type="text"
+        class="validate"
+        [(ngModel)]="exercise.sets"
+      />
+      <label for="sets" [class]="isEditing ? 'active' : ''"
+        >Número de Séries</label
+      >
+    </div>
+
+    <div class="input-field col l6 m6 s12">
+      <input
+        id="reps"
+        type="text"
+        class="validate"
+        [(ngModel)]="exercise.repetitions"
+      />
+      <label for="reps" [class]="isEditing ? 'active' : ''"
+        >Número de Repetições</label
+      >
+    </div>
+
+    <div class="input-field col l6 m6 s12">
+      <input
+        id="weight"
+        type="text"
+        class="validate"
+        [(ngModel)]="exercise.weight"
+      />
+      <label for="weight" [class]="isEditing ? 'active' : ''"
+        >Carga Total (Kg)</label
+      >
+    </div>
+
+    <div class="input-field col l6 m6 s12">
+      <input
+        id="rest"
+        type="text"
+        class="validate"
+        [(ngModel)]="exercise.rest"
+      />
+      <label for="rest" [class]="isEditing ? 'active' : ''"
+        >Tempo de Descanso</label
+      >
+    </div>
+
+    <div class="actionContainer">
+      <button (click)="add()" [hidden]="isEditing" class="saveBtn">
+        Salvar
+      </button>
+      <button (click)="edit()" [hidden]="!isEditing" class="applyBtn">
+        Aplicar
+      </button>
+
+      <div class="errorMsg" [hidden]="!hasError">
+        <span>Há dados não preenchidos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tableContainer container">
+    <table class="highlight responsive-table">
+      <thead>
+        <tr>
+          <th>Exercício</th>
+          <th>Duração</th>
+          <th>Séries</th>
+          <th>Repetições</th>
+          <th>Carga</th>
+          <th>Descanso</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let e of exercises; let i = index">
+          <td>{{ e.name }}</td>
+          <td>{{ e.duration }}</td>
+          <td>{{ e.sets }}</td>
+          <td>{{ e.repetitions }}</td>
+          <td>{{ e.weight }}</td>
+          <td>{{ e.rest }}</td>
+          <td>
+            <a
+              href="javascript:void(0)"
+              class="editBtn"
+              (click)="handleEdit(i)"
+            >
+              <i class="fas fa-pen"></i>
+            </a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="deleteBtn" (click)="remove(i)">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

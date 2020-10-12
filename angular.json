@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cronotreino"
+    }
+  },
+  "defaultProject": "cronotreino",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,145 @@
+<div class="appContainer">
+  <div class="circleContainer">
+    <svg width="300" height="300" viewBox="0 0 300 300">
+      <defs>
+        <linearGradient id="Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e100ff"></stop>
+          <stop offset="100%" stop-color="#009fff"></stop>
+        </linearGradient>
+      </defs>
+
+      <circle class="stat" cx="150" cy="150" r="100" />
+      <circle
+        class="load"
+        cx="150"
+        cy="150"
+        r="100"
+        [style.animation]="isStarted ? animation : ''"
+        [class]="isFinished ? 'filled' : ''"
+        [attr.transform]="isStarted ? 'rotate(-90 150 150)' : ''"
+      />
+      <circle
+        class="load-wrapper"
+        cx="150"
+        cy="150"
+        r="100"
+        [style.animation]="isStarted ? animation : ''"
+        [class]="isFinished ? 'finish' : ''"
+        [attr.transform]="isStarted ? 'rotate(-90 150 150)' : ''"
+      />
+      <text
+        class="counter"
+        stroke-width="3"
+        x="150"
+        y="55%"
+        text-anchor="middle"
+        [class]="isFinished ? 'finished' : ''"
+      >
+        {{ formatNumber(timeleft) }}
+      </text>
+    </svg>
+  </div>
+
+  <div class="infoContainer">
+    <div class="phaseContainer">
+      <span class="phase{{ phase }}">
+        {{
+          phase === 0
+            ? "Preparação"
+            : phase === 1
+            ? "Execução"
+            : phase === 2
+            ? "Descanso"
+            : ""
+        }}
+      </span>
+    </div>
+
+    <div class="exerciseInfo">
+      <span class="exName">
+        {{ exercises[currentEx].name }}
+      </span>
+      <span class="exNumeration">
+        Exercício {{ currentEx + 1 }}/{{ exercises.length }}</span
+      >
+    </div>
+
+    <div class="setsContainer">
+      <span>
+        Série: <strong>{{ currentSet }}/{{ exercises[currentEx].sets }}</strong>
+      </span>
+      <span>
+        Repetições: <strong>{{ exercises[currentEx].repetitions }}</strong>
+      </span>
+    </div>
+  </div>
+
+  <div class="timerControl">
+    <button
+      (click)="reset()"
+      [hidden]="phase === 1 || isPaused"
+      class="resetBtn"
+    >
+      <i class="fas fa-undo-alt"></i>
+    </button>
+
+    <button
+      (click)="start()"
+      [hidden]="phase === 1 || isPaused"
+      class="startBtn"
+    >
+      <i class="fas fa-play-circle"></i>
+    </button>
+
+    <button
+      (click)="start(); isPaused = false"
+      [hidden]="!isPaused"
+      class="resumeBtn"
+    >
+      <i class="fas fa-play-circle"></i>
+    </button>
+
+    <button
+      (click)="pause(); isPaused = true"
+      [hidden]="phase != 1 || isPaused"
+      class="pauseBtn"
+    >
+      <i class="fas fa-pause-circle"></i>
+    </button>
+
+    <button
+      (click)="restart(); isPaused = false"
+      [hidden]="!isPaused"
+      class="stopBtn"
+    >
+      <i class="fas fa-stop-circle"></i>
+    </button>
+  </div>
+
+  <div class="exerciseControl">
+    <button
+      (click)="previousExercise()"
+      [disabled]="phase === 1 || currentEx === 0"
+    >
+      <span> Exercício Anterior </span>
+    </button>
+    <button
+      (click)="nextExercise()"
+      [disabled]="phase === 1 || currentEx + 1 == exercises.length"
+    >
+      <span> Próximo Exercício </span>
+    </button>
+  </div>
+
+  <div class="setControl">
+    <button (click)="previousSet()" [disabled]="phase === 1 || currentSet <= 1">
+      <span> Série Anterior </span>
+    </button>
+    <button
+      (click)="nextSet()"
+      [disabled]="phase === 1 || currentSet === exercises[this.currentEx].sets"
+    >
+      <span> Próxima Série </span>
+    </button>
+  </div>
+</div>
